@@ -1,2 +1,2 @@
 # Modulo-2-Laboratorio-Lenguajes
- Laboratiro del módulo de lenguajes
+ Laboratorio del módulo de lenguajes
