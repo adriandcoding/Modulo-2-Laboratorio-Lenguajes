@@ -13,13 +13,13 @@ console.log(tail([1, 2, 3, 4, 5]));
 /* Init
 Implementa una función init (inmutable), tal que, dado un array como entrada devuelva todos los elementos menos el último. Utiliza los métodos que ofrece Array.prototype. */
 
-const init = (array: number[]) => [...array].slice(0, -1);
+const init = (array: number[]): number[] => [...array].slice(0, -1);
 console.log(init([1, 2, 3, 4, 5]));
 
 /* Last
 Implementa una función last (inmutable), tal que, dado un array como entrada devuelva el último elemento. */
 
-const last = (array: string | any[]) => array[array.length - 1];
+const last = (array: number[]): number => array[array.length - 1];
 console.log(last([1, 2, 3, 4, 5]));
 
 /* implementa una función concat (inmutable) tal que, dados 2 arrays como entrada, devuelva la concatenación de ambos. Utiliza rest / spread operators. */
@@ -29,22 +29,24 @@ console.log(concat([1, 2, 3], [4, 5, 6]));
 
 /* Implementa una nueva versión de concat donde se acepten múltiples arrays de entrada (más de 2). No utilices el método Array.prototype.concat */
 
-const concat2 = (...arrays: number[][]) =>
-  arrays.reduce((acc, array) => [...acc, ...array], []);
+const concat2 = (...arrays: number[][]): number[] =>
+  arrays.reduce((acc, array): number[] => [...acc, ...array], []);
 console.log(concat2([1, 2, 3], [4, 5, 6], [7, 8, 9]));
 
 /* Clone
 Implementa una función clone que, a partir de un objeto de entrada source devuelva un nuevo objeto con las propiedades de source: */
 
-const clone = (source: { a: number; b: number }) => ({ ...source });
+const clone = (source: { a: number; b: number }): { a: number; b: number } => ({
+  ...source,
+});
 console.log(clone({ a: 1, b: 2 }));
 
-/* Implementa una función merge que, dados dos objetos de entrada source y target, devuelva un nuevo objeto con todas las propiedades de target y de source, y en caso de propiedades con el mismo nombre, source sobreescribe a target.*/
+/* Implementa una función merge que, dados dos objetos de entrada source y target, devuelva un nuevo objeto con todas las propiedades de target y de source, y en caso de propiedades con el mismo nombre, source sobrescribe a target.*/
 
 const merge = (
   source: { a: number; b: number },
   target: { b: number; c: number }
-) => ({ ...target, ...source });
+): { a: number; b: number; c: number } => ({ ...target, ...source });
 console.log(merge({ a: 1, b: 2 }, { b: 3, c: 4 }));
 
 /* Crea una función isBookRead que reciba una lista de libros y un título y devuelva si se ha leído o no dicho libro. Un libro es un objeto con title como string y isRead como booleano. En caso de no existir el libro devolver false TIP: Existe un método de Array.prototype que te ayudará a buscar según un patrón.*/
@@ -61,7 +63,8 @@ const books: Book[] = [
 ];
 function isBookRead(books: any[], titleToSearch: string): boolean {
   const book = books.find(
-    (book: { title: any }) => book.title === titleToSearch
+    (book: { title: string; isRead: boolean }): boolean =>
+      book.title === titleToSearch
   );
   if (book) {
     return book.isRead;
