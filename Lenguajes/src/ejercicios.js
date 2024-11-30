@@ -78,3 +78,56 @@ machine1.play(); // "Good luck next time!!"
 machine1.play(); // "Congratulations!!!. You won 3 coins!!"
 machine1.play(); // "Good luck next time!!"
 machine1.play(); // "You won all the coins!!"
+
+
+/* Async/Await
+
+const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+const showMessage = async ([time, message]) => {
+await delay(time);
+console.log(message);
+};
+
+const triggers = [
+async () => await showMessage([200, "third"]),
+async () => await showMessage([100, "second"]),
+];
+
+const run = triggers => {
+console.log("first");
+triggers.forEach(t => t());
+};
+
+run(triggers);
+
+El ejercicio consiste en reordenar las trazas para que se muestren invertidas, es decir, con el siguiente orden:
+
+third;
+second;
+first;
+Pero para ello tan solo podrás modificar la función run.
+
+Queda prohibido modificar cualquier otro código asi como el contenido de triggers. */
+
+const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+const showMessage = async ([time, message]) => {
+await delay(time);
+console.log(message);
+};
+
+const triggers = [
+async () => await showMessage([200, "third"]),
+async () => await showMessage([100, "second"]),
+];
+
+const run = async triggers => {
+    for (const trigger of triggers.reverse()) {
+        await trigger();
+    }
+    console.log("first");
+};
+
+
+run(triggers);
