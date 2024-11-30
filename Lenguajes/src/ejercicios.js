@@ -131,3 +131,42 @@ const run = async triggers => {
 
 
 run(triggers);
+
+
+/* Implementa un mecanismo deepGet para acceder en profundidad a objetos anidados, de modo que podamos recuperar una propiedad en cualquiera de sus niveles. Mira a continuación el comportamiento que debería seguir: */
+const myObject = {
+    a: 1,
+    b: {
+        c: null,
+        d: {
+        e: 3,
+        f: {
+        g: "bingo",
+        }
+    }
+    }
+};
+const deepGet = (obj, ...paths) => {
+    if (!paths.length) return obj; 
+    let current = obj;
+    for (const path of paths) {
+    if (current === undefined || current === null) {
+        return undefined; 
+    }
+    current = current[path];
+    }
+
+    return current;
+};
+
+/* resultado esperado */
+console.log(deepGet(myObject, "x")); // undefined
+console.log(deepGet(myObject, "a")); // 1
+console.log(deepGet(myObject, "b")); // { c: null, d: {....}}
+console.log(deepGet(myObject, "b", "c")); // null
+console.log(deepGet(myObject, "b", "d", "f", "g")); // bingo
+console.log(deepGet(myObject));  // {a: 1, b: {...}}
+
+
+
+
