@@ -23,10 +23,10 @@ const concat2 = (...arrays) => arrays.reduce((acc, array) => [...acc, ...array],
 console.log(concat2([1, 2, 3], [4, 5, 6], [7, 8, 9]));
 /* Clone
 Implementa una función clone que, a partir de un objeto de entrada source devuelva un nuevo objeto con las propiedades de source: */
-const clone = (source) => (Object.assign({}, source));
+const clone = (source) => ({ ...source});
 console.log(clone({ a: 1, b: 2 }));
 /* Implementa una función merge que, dados dos objetos de entrada source y target, devuelva un nuevo objeto con todas las propiedades de target y de source, y en caso de propiedades con el mismo nombre, source sobrescribe a target.*/
-const merge = (source, target) => (Object.assign(Object.assign({}, target), source));
+const merge = (source, target) => ({...target, ...source});
 console.log(merge({ a: 1, b: 2 }, { b: 3, c: 4 }));
 const books = [
     { title: "Harry Potter y la piedra filosofal", isRead: true },
@@ -190,6 +190,7 @@ deepSet(3, myObject, "a");
 console.log(JSON.stringify(myObject));  // {a: 3}
 deepSet(4, myObject);
 console.log(JSON.stringify(myObject));  // Do nothing // {a: 3}
+
 
 
 
