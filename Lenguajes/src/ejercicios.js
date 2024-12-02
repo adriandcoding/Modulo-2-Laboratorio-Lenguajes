@@ -78,8 +78,6 @@ machine1.play(); // "Good luck next time!!"
 machine1.play(); // "Congratulations!!!. You won 3 coins!!"
 machine1.play(); // "Good luck next time!!"
 machine1.play(); // "You won all the coins!!"
-
-
 /* Async/Await
 
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
@@ -166,6 +164,33 @@ console.log(deepGet(myObject, "b")); // { c: null, d: {....}}
 console.log(deepGet(myObject, "b", "c")); // null
 console.log(deepGet(myObject, "b", "d", "f", "g")); // bingo
 console.log(deepGet(myObject));  // {a: 1, b: {...}}
+
+/* Ahora implementa el complementario, deepSet, que permita guardar valores en profundidad. Su comportamiento debería ser:
+ */
+
+const deepSet = (value, obj, ...paths) => {
+    if (!paths.length) return;
+    let current = obj;
+    const lastPath = paths.pop();
+
+    for (const path of paths) {
+        if (current[path] === undefined || typeof current[path] !== 'object') {
+            current[path] = {};
+        }
+        current = current[path];
+    }
+
+    current[lastPath] = value;
+};
+deepSet(1, myObject, "a", "b");
+console.log(JSON.stringify(myObject));  // {a: { b: 1}}
+deepSet(2, myObject, "a", "c");
+console.log(JSON.stringify(myObject));  // {a: { b: 1, c: 2}}
+deepSet(3, myObject, "a");
+console.log(JSON.stringify(myObject));  // {a: 3}
+deepSet(4, myObject);
+console.log(JSON.stringify(myObject));  // Do nothing // {a: 3}
+
 
 
 
