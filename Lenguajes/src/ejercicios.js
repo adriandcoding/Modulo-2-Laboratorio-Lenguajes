@@ -87,14 +87,12 @@ machine1.play(); // "Good luck next time!!"
 machine1.play(); // "Congratulations!!!. You won 3 coins!!"
 machine1.play(); // "Good luck next time!!"
 machine1.play(); // "You won all the coins!!"
-// Función delay para promesas
+/* Trazas por consola */
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-// Función para mostrar mensajes después de un retardo
 const showMessage = (_a) => __awaiter(void 0, [_a], void 0, function* ([time, message]) {
     yield delay(time);
     console.log(message);
 });
-// Array de funciones asíncronas que muestran mensajes
 const triggers = [
     () => __awaiter(void 0, void 0, void 0, function* () { return yield showMessage([200, "third"]); }),
     () => __awaiter(void 0, void 0, void 0, function* () { return yield showMessage([100, "second"]); }),
@@ -107,11 +105,12 @@ const run = (triggers) => __awaiter(void 0, void 0, void 0, function* () {
     console.log("first");
 });
 run(triggers);
+/* Implementa un mecanismo deepGet para acceder en profundidad a objetos anidados, de modo que podamos recuperar una propiedad en cualquiera de sus niveles. Mira a continuación el comportamiento que debería seguir: */
 const myObject = {
     a: 1,
     b: {
-        c: null,
         d: {
+            c: null,
             e: 3,
             f: {
                 g: "bingo",
@@ -119,7 +118,6 @@ const myObject = {
         },
     },
 };
-// Función deepGet para acceder a propiedades anidadas
 const deepGet = (obj, ...paths) => {
     if (!paths.length)
         return obj;
@@ -139,7 +137,7 @@ console.log(deepGet(myObject, "b")); // { c: null, d: {....}}
 console.log(deepGet(myObject, "b", "c")); // null
 console.log(deepGet(myObject, "b", "d", "f", "g")); // bingo
 console.log(deepGet(myObject)); // {a: 1, b: {...}}
-// Función deepSet para establecer valores anidados
+/* Ahora implementa el complementario, deepSet, que permita guardar valores en profundidad. Su comportamiento debería ser: */
 const deepSet = (value, obj, ...paths) => {
     if (!paths.length)
         return;
@@ -163,3 +161,13 @@ deepSet(3, myObject, "a");
 console.log(JSON.stringify(myObject)); // {a: 3}
 deepSet(4, myObject);
 console.log(JSON.stringify(myObject)); // Do nothing // {a: 3}
+const flattenArray = (arr) => {
+    const flatten = (input) => {
+        return input.reduce((acc, val) => Array.isArray(val) ? acc.concat(flatten(val)) : acc.concat(val), []);
+    };
+    return flatten(arr);
+};
+// Ejemplo de uso
+const sample = [1, [2, 3], [[4], [5, 6, [7, 8, [9]]]]];
+const result = flattenArray(sample);
+console.log(result); // [1, 2, 3, 4, 5, 6, 7, 8, 9]

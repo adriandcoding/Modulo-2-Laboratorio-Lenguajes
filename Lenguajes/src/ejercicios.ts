@@ -218,14 +218,16 @@ console.log(JSON.stringify(myObject)); // Do nothing // {a: 3}
 type Flatten<T> = T extends (infer U)[] ? Flatten<U> : T;
 
 const flattenArray = <T>(arr: T[]): Flatten<T>[] => {
-  const flatten = (input: any[]): any[] => {
-    return input.reduce<any[]>(
-      (acc, val) =>
-        Array.isArray(val) ? acc.concat(flatten(val)) : acc.concat(val),
+  const flatten = (input: T[]): Flatten<T>[] => {
+    return input.reduce<Flatten<T>[]>(
+      (acc, val): Flatten<T>[] =>
+        Array.isArray(val)
+          ? acc.concat(flatten(val))
+          : acc.concat(val as Flatten<T>),
       []
     );
   };
-  return flatten(arr) as Flatten<T>[];
+  return flatten(arr);
 };
 
 // Ejemplo de uso
