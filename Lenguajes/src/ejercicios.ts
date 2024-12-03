@@ -117,11 +117,11 @@ machine1.play(); // "Congratulations!!!. You won 3 coins!!"
 machine1.play(); // "Good luck next time!!"
 machine1.play(); // "You won all the coins!!"
 
-// Función delay para promesas
+/* Trazas por consola */
+
 const delay = (ms: number): Promise<void> =>
   new Promise((resolve) => setTimeout(resolve, ms));
 
-// Función para mostrar mensajes después de un retardo
 const showMessage = async ([time, message]: [
   number,
   string
@@ -130,7 +130,6 @@ const showMessage = async ([time, message]: [
   console.log(message);
 };
 
-// Array de funciones asíncronas que muestran mensajes
 const triggers: Array<() => Promise<void>> = [
   async () => await showMessage([200, "third"]),
   async () => await showMessage([100, "second"]),
@@ -148,11 +147,13 @@ const run = async (triggers: Array<() => Promise<void>>): Promise<void> => {
 
 run(triggers);
 
+/* Implementa un mecanismo deepGet para acceder en profundidad a objetos anidados, de modo que podamos recuperar una propiedad en cualquiera de sus niveles. Mira a continuación el comportamiento que debería seguir: */
+
 const myObject: { [key: string]: any } = {
   a: 1,
   b: {
-    c: null,
     d: {
+      c: null,
       e: 3,
       f: {
         g: "bingo",
@@ -161,7 +162,6 @@ const myObject: { [key: string]: any } = {
   },
 };
 
-// Función deepGet para acceder a propiedades anidadas
 const deepGet = (obj: any, ...paths: string[]): any => {
   if (!paths.length) return obj;
   let current = obj;
@@ -175,6 +175,7 @@ const deepGet = (obj: any, ...paths: string[]): any => {
 };
 
 /* resultado esperado */
+
 console.log(deepGet(myObject, "x")); // undefined
 console.log(deepGet(myObject, "a")); // 1
 console.log(deepGet(myObject, "b")); // { c: null, d: {....}}
@@ -183,6 +184,7 @@ console.log(deepGet(myObject, "b", "d", "f", "g")); // bingo
 console.log(deepGet(myObject)); // {a: 1, b: {...}}
 
 // Función deepSet para establecer valores anidados
+
 const deepSet = (value: any, obj: any, ...paths: string[]): void => {
   if (!paths.length) return;
   let current = obj;
