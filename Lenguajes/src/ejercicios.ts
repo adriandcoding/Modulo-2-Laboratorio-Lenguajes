@@ -183,7 +183,7 @@ console.log(deepGet(myObject, "b", "c")); // null
 console.log(deepGet(myObject, "b", "d", "f", "g")); // bingo
 console.log(deepGet(myObject)); // {a: 1, b: {...}}
 
-// Función deepSet para establecer valores anidados
+/* Ahora implementa el complementario, deepSet, que permita guardar valores en profundidad. Su comportamiento debería ser: */
 
 const deepSet = (value: any, obj: any, ...paths: string[]): void => {
   if (!paths.length) return;
@@ -209,3 +209,27 @@ deepSet(3, myObject, "a");
 console.log(JSON.stringify(myObject)); // {a: 3}
 deepSet(4, myObject);
 console.log(JSON.stringify(myObject)); // Do nothing // {a: 3}
+
+/* Dado un array multidimensional, construye una función inmutable que devuelva el mismo array aplanado, esto es, con un único nivel de profundidad. Por ejemplo, el siguiente array: 
+ debería devolver el siguiente array: */
+
+/* ¿Has resuelto el ejercicio anterior? Suponiendo que los arrays multidimensionales del ejercicio anterior no serán de naturaleza mixta, es decir, sus elementos siempre serán del mismo tipo ¿Serías capaz de proporcionar un tipado adecuado a dicha función de aplanamiento? */
+
+type Flatten<T> = T extends (infer U)[] ? Flatten<U> : T;
+
+const flattenArray = <T>(arr: T[]): Flatten<T>[] => {
+  const flatten = (input: any[]): any[] => {
+    return input.reduce<any[]>(
+      (acc, val) =>
+        Array.isArray(val) ? acc.concat(flatten(val)) : acc.concat(val),
+      []
+    );
+  };
+  return flatten(arr) as Flatten<T>[];
+};
+
+// Ejemplo de uso
+const sample = [1, [2, 3], [[4], [5, 6, [7, 8, [9]]]]];
+const result = flattenArray(sample);
+
+console.log(result); // [1, 2, 3, 4, 5, 6, 7, 8, 9]
