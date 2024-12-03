@@ -163,11 +163,28 @@ deepSet(4, myObject);
 console.log(JSON.stringify(myObject)); // Do nothing // {a: 3}
 const flattenArray = (arr) => {
     const flatten = (input) => {
-        return input.reduce((acc, val) => Array.isArray(val) ? acc.concat(flatten(val)) : acc.concat(val), []);
+        return input.reduce((acc, val) => Array.isArray(val)
+            ? acc.concat(flatten(val))
+            : acc.concat(val), []);
     };
     return flatten(arr);
 };
-// Ejemplo de uso
 const sample = [1, [2, 3], [[4], [5, 6, [7, 8, [9]]]]];
 const result = flattenArray(sample);
 console.log(result); // [1, 2, 3, 4, 5, 6, 7, 8, 9]
+/* Implementa un mecanismo de memoización para funciones costosas y típalo con TypeScript. La memoización optimiza sucesivas llamadas del siguiente modo: */
+/* ¿Podrías hacerlo en una sola línea? */
+const expensiveFunction = () => {
+    console.log("Una única llamada");
+    return 3.1415;
+};
+const memoize = (fn) => {
+    let cache;
+    return () => cache !== null && cache !== void 0 ? cache : (cache = fn());
+};
+const memoized = memoize(expensiveFunction);
+console.log(memoized()); // Una única llamada // 3.1415
+console.log(memoized()); // 3.1415
+console.log(memoized()); // 3.1415
+/* NOTA: Puedes suponer que las funciones que van a ser memoizadas no llevan argumentos y tampoco devuelven valores null o undefined. */
+/*Contempla ahora la posibilidad de que la función a memoizar pueda tener argumentos. Por simplicidad supongamos sólo argumentos primitivos: string, number o boolean y que no sean undefined. ¿Podrías hacer una versión aceptando argumentos? ¿Cómo la tiparías con TS? Un ejemplo de comportamiento podría ser: */
