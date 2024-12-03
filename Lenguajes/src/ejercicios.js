@@ -168,6 +168,7 @@ console.log(deepGet(myObject));  // {a: 1, b: {...}}
 /* Ahora implementa el complementario, deepSet, que permita guardar valores en profundidad. Su comportamiento debería ser:
  */
 
+
 const deepSet = (value, obj, ...paths) => {
     if (!paths.length) return;
     let current = obj;
