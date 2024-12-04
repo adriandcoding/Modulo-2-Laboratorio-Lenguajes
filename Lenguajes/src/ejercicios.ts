@@ -295,3 +295,16 @@ type TreeNode<T> = {
   children: TreeNode<T>[];
   parent?: TreeNode<T>;
 };
+
+/* ¿Existe alguna forma de que la expresión x === x de como resultado false? */
+
+const x = NaN;
+
+console.log(x === x); // false
+
+/* Puedes usar la función global Number.isNaN, que verifica si un valor es estrictamente NaN. Si no quieres usarla directamente, puedes recrear su lógica: */
+
+const isNaNValue = (v: number): boolean => Number.isNaN(v);
+
+console.log(isNaNValue(NaN)); // true
+console.log(isNaNValue(42)); // false
