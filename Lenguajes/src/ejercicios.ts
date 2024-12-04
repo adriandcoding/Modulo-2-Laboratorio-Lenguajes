@@ -290,8 +290,8 @@ console.log(count); // 2
 /* ¿Cómo generarías con TypeScript un tipado para estructuras en forma de árbol?
 Un árbol es una estructura que parte de un nodo raíz, a partir del cual salen más nodos. Cada nodo en un árbol puede tener hijos (más nodos) o no tenerlos (convirtiéndose en un nodo final o una "hoja"). */
 
-type TreeNode = {
+type TreeNode<T> = {
   value: string;
-  children: TreeNode[];
-  parent?: TreeNode;
+  children: TreeNode<T>[];
+  parent?: TreeNode<T>;
 };
