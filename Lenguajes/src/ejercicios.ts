@@ -262,7 +262,7 @@ const memoize2 = <Args extends unknown[], Return>(
   const cache = new Map<string, Return>();
 
   return (...args: Args) => {
-    const key = args.map((arg): string => JSON.stringify(arg)).join("|");
+    const key = args.map((arg): string => JSON.stringify(arg)).join();
     if (cache.has(key)) {
       return cache.get(key)!;
     }
