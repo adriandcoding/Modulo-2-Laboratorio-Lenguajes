@@ -263,8 +263,8 @@ const memoize2 = <Args extends Primitive[], Return>(
 ): ((...args: Args) => Return) => {
   const cache = new Map<string, Return>();
 
-  return (...args: Args) => {
-    const key = args.map((arg) => JSON.stringify(arg)).join();
+  return (...args: Args): Return => {
+    const key = args.map((arg): string => JSON.stringify(arg)).join();
     if (cache.has(key)) {
       return cache.get(key)!;
     }
@@ -274,20 +274,12 @@ const memoize2 = <Args extends Primitive[], Return>(
   };
 };
 
-// Ejemplo de uso:
-
 let count = 0;
 const repeatText = (repetitions: number, text: string): string => (
   count++, `${text} `.repeat(repetitions).trim()
 );
 
 const memoizedGreet = memoize2(repeatText);
-
-console.log(memoizedGreet(1, "pam")); // pam
-console.log(memoizedGreet(3, "chun")); // chun chun chun
-console.log(memoizedGreet(1, "pam")); // pam
-console.log(memoizedGreet(3, "chun")); // chun chun chun
-console.log(count); // 2
 
 console.log(memoizedGreet(1, "pam")); // pam
 console.log(memoizedGreet(3, "chun")); // chun chun chun
