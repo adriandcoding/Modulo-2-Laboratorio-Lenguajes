@@ -131,8 +131,8 @@ const showMessage = async ([time, message]: [
 };
 
 const triggers: Array<() => Promise<void>> = [
-  async () => await showMessage([200, "third"]),
-  async () => await showMessage([100, "second"]),
+  async (): Promise<void> => await showMessage([200, "third"]),
+  async (): Promise<void> => await showMessage([100, "second"]),
 ];
 
 const run = async (triggers: Array<() => Promise<void>>): Promise<void> => {
