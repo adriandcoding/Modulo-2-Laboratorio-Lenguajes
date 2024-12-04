@@ -308,3 +308,25 @@ const isNaNValue = (v: number): boolean => Number.isNaN(v);
 
 console.log(isNaNValue(NaN)); // true
 console.log(isNaNValue(42)); // false
+
+/* Habiendo resuelto la Cuestion 2 ¿Existe alguna forma de que la expresión !isNaNValue(x) && x !== x de como resultado true? */
+
+const isNaNValue2 = (v: any) => typeof v !== "number";
+
+const x2 = NaN;
+
+console.log(!isNaNValue2(x2) && x2 !== x2);
+
+/* ¿Podrías dar con alguna forma de que la expresión x + 1 === x - 1 arroje true? */
+
+const x3 = Infinity;
+
+console.log(x3 + 1 === x3 - 1); // true
+
+/* Se te ocurre alguna forma de hacer que la expresión x > x de como resultado true? */
+
+const x4 = {
+  valueOf: (): number => Math.random(),
+};
+
+console.log(x4 > x4); // true
