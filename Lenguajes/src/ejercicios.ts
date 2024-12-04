@@ -163,15 +163,10 @@ const myObject: { [key: string]: any } = {
 };
 
 const deepGet = (obj: any, ...paths: string[]): any => {
-  if (!paths.length) return obj;
-  let current = obj;
-  for (const path of paths) {
-    if (current === undefined || current === null) {
-      return undefined;
-    }
-    current = current[path];
-  }
-  return current;
+  return paths.reduce((current, path) => {
+    if (current === undefined || current === null) return undefined;
+    return current[path];
+  }, obj);
 };
 
 /* resultado esperado */
@@ -179,7 +174,7 @@ const deepGet = (obj: any, ...paths: string[]): any => {
 console.log(deepGet(myObject, "x")); // undefined
 console.log(deepGet(myObject, "a")); // 1
 console.log(deepGet(myObject, "b")); // { c: null, d: {....}}
-console.log(deepGet(myObject, "b", "c")); // null
+console.log(deepGet(myObject, "b", "d", "c")); // null
 console.log(deepGet(myObject, "b", "d", "f", "g")); // bingo
 console.log(deepGet(myObject)); // {a: 1, b: {...}}
 
