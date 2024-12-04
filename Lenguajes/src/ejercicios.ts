@@ -264,7 +264,7 @@ const memoize2 = <Args extends Primitive[], Return>(
   const cache = new Map<string, Return>();
 
   return (...args: Args) => {
-    const key = args.map((arg) => JSON.stringify(arg)).join("|");
+    const key = args.map((arg) => JSON.stringify(arg)).join();
     if (cache.has(key)) {
       return cache.get(key)!;
     }
