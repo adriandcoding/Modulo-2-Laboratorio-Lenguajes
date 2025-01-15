@@ -20,8 +20,12 @@ Implementa una función tail (inmutable), tal que, dado un array como entrada
 devuelta todos menos el primer elemento. Utiliza rest operator. 
 */
 
-// [🙋‍♂️]: Mismos comentarios que en 'head'.
-const tail = <T>([, ...tail]: [T, ...T[]]): T[] => tail;
+const tail = <T>(array?: T[]): T[] => {
+  if (!array || array.length === 0) return [];
+  const [, ...rest] = array;
+  return rest;
+};
+
 console.log(tail([1, 2, 3, 4, 5]));
 
 /* 
