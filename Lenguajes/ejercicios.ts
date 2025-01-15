@@ -42,8 +42,7 @@ Implementa una función last (inmutable), tal que, dado un array como entrada
 devuelva el último elemento. 
 */
 
-// [🙋‍♂️]: Tipado: mejora opcional, intenta hacerlo genérico.
-const last = (array: number[]): number => array[array.length - 1];
+const last = <T>(array: T[]): T | undefined => array[array.length - 1];
 console.log(last([1, 2, 3, 4, 5]));
 
 /* 
