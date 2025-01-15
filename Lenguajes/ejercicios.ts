@@ -8,7 +8,8 @@ extraiga y devuelva su primer elemento. Utiliza destructuring.
 // [🙋‍♂️]: Como mejora para código más robusto, ¿que pasaría si invoco head(undefined)?
 const head = <T>(array?: T[]): T | undefined => {
   if (!array || array.length === 0) return undefined;
-  return array[0];
+  const [first] = array;
+  return first;
 };
 
 console.log(head([1, 2, 3, 4, 5]));
