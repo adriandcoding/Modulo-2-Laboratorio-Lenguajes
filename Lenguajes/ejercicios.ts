@@ -50,8 +50,7 @@ Implementa una función concat (inmutable) tal que, dados 2 arrays como entrada,
 devuelva la concatenación de ambos. Utiliza rest / spread operators. 
 */
 
-// [🙋‍♂️]: Tipado: mejora opcional, intenta hacerlo genérico.
-const concat = (array1: number[], array2: number[]) => [...array1, ...array2];
+const concat = <T>(array1: T[], array2: T[]): T[] => [...array1, ...array2];
 console.log(concat([1, 2, 3], [4, 5, 6]));
 
 /* 
