@@ -4,8 +4,6 @@ Implementa una función head (inmutable), tal que, dado un array como entrada
 extraiga y devuelva su primer elemento. Utiliza destructuring. 
 */
 
-// [🙋‍♂️]: Tipado: el parámetro se puede simplificar, no haría falta usar tuplas, aunque no esta mal, pero puede ser más sencillo aún.
-// [🙋‍♂️]: Como mejora para código más robusto, ¿que pasaría si invoco head(undefined)?
 const head = <T>(array?: T[]): T | undefined => {
   if (!array || array.length === 0) return undefined;
   const [first] = array;
