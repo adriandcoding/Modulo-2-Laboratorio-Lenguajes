@@ -35,9 +35,7 @@ devuelva todos los elementos menos el último. Utiliza los métodos que ofrece
 Array.prototype.
 */
 
-// [🙋‍♂️]: Tipado: mejora opcional, intenta hacerlo genérico, como antes.
-// [🙋‍♂️]: Implementacion: ¿el shallow copy ([...array]) es necesario ? comprueba si la operación 'slice' es inmutable o mutable.
-const init = (array: number[]): number[] => [...array].slice(0, -1);
+const init = <T>(array: T[]): T[] => array.slice(0, -1);
 console.log(init([1, 2, 3, 4, 5]));
 
 /* 
