@@ -6,7 +6,11 @@ extraiga y devuelva su primer elemento. Utiliza destructuring.
 
 // [🙋‍♂️]: Tipado: el parámetro se puede simplificar, no haría falta usar tuplas, aunque no esta mal, pero puede ser más sencillo aún.
 // [🙋‍♂️]: Como mejora para código más robusto, ¿que pasaría si invoco head(undefined)?
-const head = <T>([first]: [T, ...T[]]): T => first;
+const head = <T>(array?: T[]): T | undefined => {
+  if (!array || array.length === 0) return undefined;
+  return array[0];
+};
+
 console.log(head([1, 2, 3, 4, 5]));
 
 /* 
