@@ -68,8 +68,7 @@ Implementa una función clone que, a partir de un objeto de entrada source
 devuelva un nuevo objeto con las propiedades de source: 
 */
 
-// [🙋‍♂️]: Tipado: mejora opcional, intenta hacerlo genérico.
-const clone = (source: { a: number; b: number }): { a: number; b: number } => ({
+const clone = <T>(source: T): T => ({
   ...source,
 });
 console.log(clone({ a: 1, b: 2 }));
