@@ -162,6 +162,8 @@ machine1.play(); // "Good luck next time!!"
 
 /* Trazas por consola */
 
+type Trigger = () => Promise<void>;
+
 const delay = (ms: number): Promise<void> =>
   new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -173,17 +175,9 @@ const showMessage = async ([time, message]: [
   console.log(message);
 };
 
-// [🙋‍♂️]: Tipado: te sugiero que extraigas el tipado de un solo "trigger" a un
-// alias, y lo reuses después donde necesites. Un "trigger" es una función que
-// devulve un Promise<void>.
-
-// [🙋‍♂️]: Tipado: si ya has tipado la variable "triggers" no tendrías que volver
-// a tipar cada elemento del array.
-type Trigger = () => Promise<void>;
-
 const triggers: Trigger[] = [
-  async () => await showMessage([200, "third"]),
-  async () => await showMessage([100, "second"]),
+  async (): Promise<void> => await showMessage([200, "third"]),
+  async (): Promise<void> => await showMessage([100, "second"]),
 ];
 
 const run = async (triggers: Trigger[]): Promise<void> => {
