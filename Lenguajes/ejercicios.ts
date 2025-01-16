@@ -58,9 +58,8 @@ Implementa una nueva versión de concat donde se acepten múltiples arrays de
 entrada (más de 2). No utilices el método Array.prototype.concat 
 */
 
-// [🙋‍♂️]: Tipado: mejora opcional, intenta hacerlo genérico.
-const concat2 = (...arrays: number[][]): number[] =>
-  arrays.reduce((acc, array): number[] => [...acc, ...array], []);
+const concat2 = <T>(...arrays: T[][]): T[] =>
+  arrays.reduce((acc, array): T[] => [...acc, ...array], []);
 console.log(concat2([1, 2, 3], [4, 5, 6], [7, 8, 9]));
 
 /* 
