@@ -79,12 +79,11 @@ devuelva un nuevo objeto con todas las propiedades de target y de source, y en
 caso de propiedades con el mismo nombre, source sobrescribe a target.
 */
 
-// [🙋‍♂️]: Tipado: el tipado es mejorable si lo hacemos genérico, este mismo ejercicio
-// lo vimos en la sesión de TS recuerdas?
-const merge = (
-  source: { a: number; b: number },
-  target: { b: number; c: number }
-): { a: number; b: number; c: number } => ({ ...target, ...source });
+const merge = <T extends object, U extends object>(
+  source: T,
+  target: U
+): T & U => ({ ...target, ...source });
+
 console.log(merge({ a: 1, b: 2 }, { b: 3, c: 4 }));
 
 /* 
