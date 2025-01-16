@@ -133,14 +133,8 @@ la máquina. En caso contrario deberá mostrar otro mensaje:
 "Good luck next time!!". 
 */
 
-// [🙋‍♂️]: Está perfecto, solo un apunte, te puedes ahorrar el constructor si
-// inicializas el miembro "coins" directamente en la clase (class field declaration syntax).
 class SlotMachine {
-  coins: number;
-
-  constructor() {
-    this.coins = 0;
-  }
+  coins: number = 0;
 
   play() {
     this.coins++;
@@ -152,7 +146,7 @@ class SlotMachine {
     const hasWon: boolean = reel1 && reel2 && reel3;
 
     if (hasWon) {
-      console.log(`Congratulations!!!. You won ${this.coins} coins!!`);
+      console.log(`Congratulations!!! You won ${this.coins} coins!!`);
       this.coins = 0;
     } else {
       console.log("Good luck next time!!");
@@ -163,9 +157,8 @@ class SlotMachine {
 const machine1 = new SlotMachine();
 machine1.play(); // "Good luck next time!!"
 machine1.play(); // "Good luck next time!!"
-machine1.play(); // "Congratulations!!!. You won 3 coins!!"
+machine1.play(); // "Congratulations!!! You won 3 coins!!"
 machine1.play(); // "Good luck next time!!"
-machine1.play(); // "You won all the coins!!"
 
 /* Trazas por consola */
 
