@@ -195,10 +195,6 @@ de modo que podamos recuperar una propiedad en cualquiera de sus niveles.
 Mira a continuación el comportamiento que debería seguir: 
 */
 
-// [🙋‍♂️]: Un consejo, este tipado es como no tipar. Le estas diciendo que myObject
-// es un objeto donde cada clave es un string y su tipo cualquier cosa. Eso es
-// como decirle que puede ser cualquier objeto. Es mejor dejar que TS infiera el
-// tipado en estos casos.
 const myObject = {
   a: 1,
   b: {
