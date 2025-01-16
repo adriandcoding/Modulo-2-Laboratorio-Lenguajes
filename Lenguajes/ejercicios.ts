@@ -105,21 +105,10 @@ const books: Book[] = [
   { title: "Devastación", isRead: true },
 ];
 
-// [🙋‍♂️]: Tipado:
-// 1. Ojo con `books` tipado como any[], el tipo correcto ya lo tienes
-// mas arriba.
-// 2. Si arreglas 1, no vas a necesitar tipar el parámetro 'book' en el callback de find.
-// [🙋‍♂️]: Te animas a dejar el cuerpo de 'isBookRead' en una sola línea?
-function isBookRead(books: any[], titleToSearch: string): boolean {
-  const book = books.find(
-    (book: { title: string; isRead: boolean }): boolean =>
-      book.title === titleToSearch
-  );
-  if (book) {
-    return book.isRead;
-  }
-  return false;
+function isBookRead(books: Book[], titleToSearch: string): boolean {
+  return books.some((book) => book.title === titleToSearch && book.isRead);
 }
+
 console.log(isBookRead(books, "Harry Potter y la piedra filosofal"));
 console.log(isBookRead(books, "Devastación"));
 console.log(isBookRead(books, "Canción de hielo y fuego"));
