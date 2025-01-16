@@ -199,7 +199,7 @@ Mira a continuación el comportamiento que debería seguir:
 // es un objeto donde cada clave es un string y su tipo cualquier cosa. Eso es
 // como decirle que puede ser cualquier objeto. Es mejor dejar que TS infiera el
 // tipado en estos casos.
-const myObject: { [key: string]: any } = {
+const myObject = {
   a: 1,
   b: {
     d: {
