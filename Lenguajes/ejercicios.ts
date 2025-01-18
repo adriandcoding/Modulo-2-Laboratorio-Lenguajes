@@ -214,12 +214,10 @@ const myObject = {
 // ** https://developer.mozilla.org/en-US/docs/Glossary/Recursion
 // [🙋‍♂️]: Hacer el tipado de esta función es muy avanzado, pero esos any ahi
 // realmente no hacen nada.
-const deepGet = (obj: any, ...paths: string[]): any => {
-  return paths.reduce((current, path) => {
-    if (current === undefined || current === null) return undefined;
-    return current[path];
-  }, obj);
-};
+const deepGet = (obj: any, ...paths: string[]): any =>
+  paths.length === 0 || obj == null
+    ? obj
+    : deepGet(obj[paths[0]], ...paths.slice(1));
 
 /* resultado esperado */
 
@@ -239,19 +237,17 @@ profundidad. Su comportamiento debería ser:
 // sin necesidad de hacer ese "pop". Y también puedes hacer una versión recursiva
 // si te atreves.
 const deepSet = (value: any, obj: any, ...paths: string[]): void => {
-  if (!paths.length) return;
+  if (paths.length === 0) return;
+
   let current = obj;
-  const lastPath = paths.pop();
-
-  if (!lastPath) return;
-
-  for (const path of paths) {
+  for (let i = 0; i < paths.length - 1; i++) {
+    const path = paths[i];
     if (current[path] === undefined || typeof current[path] !== "object") {
       current[path] = {};
     }
     current = current[path];
   }
-  current[lastPath] = value;
+  current[paths[paths.length - 1]] = value;
 };
 
 deepSet(1, myObject, "a", "b");
@@ -261,7 +257,7 @@ console.log(JSON.stringify(myObject)); // {a: { b: 1, c: 2}}
 deepSet(3, myObject, "a");
 console.log(JSON.stringify(myObject)); // {a: 3}
 deepSet(4, myObject);
-console.log(JSON.stringify(myObject)); // Do nothing // {a: 3}
+console.log(JSON.stringify(myObject)); // Do nothing
 
 /* 
 Dado un array multidimensional, construye una función inmutable que devuelva el 
