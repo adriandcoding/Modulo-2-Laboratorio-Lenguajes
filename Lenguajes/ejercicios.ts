@@ -260,18 +260,10 @@ console.log(JSON.stringify(myObject)); // Do nothing
 Dado un array multidimensional, construye una función inmutable que devuelva el 
 mismo array aplanado, esto es, con un único nivel de profundidad. Por ejemplo, 
 el siguiente array: 
+const sample = [1, [2, 3], [[4], [5, 6, [7, 8, [9]]]]];
 debería devolver el siguiente array: 
+[1, 2, 3, 4, 5, 6, 7, 8, 9];
 */
-
-/* 
-¿Has resuelto el ejercicio anterior? Suponiendo que los arrays multidimensionales
-del ejercicio anterior no serán de naturaleza mixta, es decir, sus elementos 
-siempre serán del mismo tipo ¿Serías capaz de proporcionar un tipado adecuado a
-dicha función de aplanamiento? 
-*/
-
-type Flatten<T> = T extends (infer U)[] ? Flatten<U> : T;
-
 // [🙋‍♂️]: Muy bien, aunque hay alguna cosa que se puede mejorar o simplificar:
 // - Es un poco raro que "flattenArray" cree por debajo otra función y la llame.
 //   Esa función interna te la puedes ahorrar y hacer directamente la recursividad
@@ -281,6 +273,7 @@ type Flatten<T> = T extends (infer U)[] ? Flatten<U> : T;
 // - Con todo eso hecho, se te puede quedar en 1 línea de nuevo.
 // - En cuanto a tipado, se podría también simplificar si intentas usar lo siguiente:
 //   type NestedArray<T> = (T | NestedArray<T>)[];
+
 const flattenArray = <T>(arr: T[]): Flatten<T>[] => {
   const flatten = (input: T[]): Flatten<T>[] => {
     return input.reduce<Flatten<T>[]>(
@@ -298,6 +291,14 @@ const sample = [1, [2, 3], [[4], [5, 6, [7, 8, [9]]]]];
 const result = flattenArray(sample);
 
 console.log(result); // [1, 2, 3, 4, 5, 6, 7, 8, 9]
+/* 
+¿Has resuelto el ejercicio anterior? Suponiendo que los arrays multidimensionales
+del ejercicio anterior no serán de naturaleza mixta, es decir, sus elementos 
+siempre serán del mismo tipo ¿Serías capaz de proporcionar un tipado adecuado a
+dicha función de aplanamiento? 
+*/
+
+type Flatten<T> = T extends (infer U)[] ? Flatten<U> : T;
 
 /* 
 Implementa un mecanismo de memoización para funciones costosas y típalo con 
