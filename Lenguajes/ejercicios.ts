@@ -237,7 +237,7 @@ profundidad. Su comportamiento debería ser:
 // sin necesidad de hacer ese "pop". Y también puedes hacer una versión recursiva
 // si te atreves.
 const deepSet = (value: any, obj: any, ...paths: string[]): void => {
-  if (paths.length === 0) return;
+  if (paths.length === 0 || obj == null) return;
 
   let current = obj;
   for (let i = 0; i < paths.length - 1; i++) {
@@ -263,7 +263,7 @@ console.log(JSON.stringify(myObject)); // Do nothing
 Dado un array multidimensional, construye una función inmutable que devuelva el 
 mismo array aplanado, esto es, con un único nivel de profundidad. Por ejemplo, 
 el siguiente array: 
- debería devolver el siguiente array: 
+debería devolver el siguiente array: 
 */
 
 /* 
