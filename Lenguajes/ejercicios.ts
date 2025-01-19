@@ -361,10 +361,8 @@ más nodos. Cada nodo en un árbol puede tener hijos (más nodos) o no tenerlos
 (convirtiéndose en un nodo final o una "hoja"). 
 */
 
-// [🙋‍♂️]: Genial, solo una cosa, ya que es genérico con el tipo T, value debería
-// ser de tipo T.
 type TreeNode<T> = {
-  value: string;
+  value: T;
   children: TreeNode<T>[];
   parent?: TreeNode<T>;
 };
