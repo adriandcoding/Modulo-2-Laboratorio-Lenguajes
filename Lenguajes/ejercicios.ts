@@ -288,14 +288,14 @@ console.log(result); // [1, 2, 3, 4, 5, 6, 7, 8, 9]
 Implementa un mecanismo de memoización para funciones costosas y típalo con 
 TypeScript. La memoización optimiza sucesivas llamadas del siguiente modo: 
 */
-/* 
-¿Podrías hacerlo en una sola línea? 
-*/
-
 const expensiveFunction = (): number => {
   console.log("Una única llamada");
   return 3.1415;
 };
+
+/* 
+¿Podrías hacerlo en una sola línea? 
+*/
 
 // [🙋‍♂️]: Está perfecto. Pista para dejarlo en 1 línea: las funciones también
 // son objetos ¿verdad? pues quizá podrías guardar esa cache en la propia "fn"
