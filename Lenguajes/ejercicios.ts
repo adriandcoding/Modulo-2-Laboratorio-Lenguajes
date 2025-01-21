@@ -264,6 +264,12 @@ const sample = [1, [2, 3], [[4], [5, 6, [7, 8, [9]]]]];
 debería devolver el siguiente array: 
 [1, 2, 3, 4, 5, 6, 7, 8, 9];
 */
+/* 
+¿Has resuelto el ejercicio anterior? Suponiendo que los arrays multidimensionales
+del ejercicio anterior no serán de naturaleza mixta, es decir, sus elementos 
+siempre serán del mismo tipo ¿Serías capaz de proporcionar un tipado adecuado a
+dicha función de aplanamiento? 
+*/
 
 type NestedArray<T> = (T | NestedArray<T>)[];
 
@@ -277,12 +283,6 @@ const sample = [1, [2, 3], [[4], [5, 6, [7, 8, [9]]]]];
 const result = flattenArray(sample);
 
 console.log(result); // [1, 2, 3, 4, 5, 6, 7, 8, 9]
-/* 
-¿Has resuelto el ejercicio anterior? Suponiendo que los arrays multidimensionales
-del ejercicio anterior no serán de naturaleza mixta, es decir, sus elementos 
-siempre serán del mismo tipo ¿Serías capaz de proporcionar un tipado adecuado a
-dicha función de aplanamiento? 
-*/
 
 /* 
 Implementa un mecanismo de memoización para funciones costosas y típalo con 
