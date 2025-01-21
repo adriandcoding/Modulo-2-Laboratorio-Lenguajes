@@ -369,7 +369,6 @@ type TreeNode<T> = {
 
 /* ¿Existe alguna forma de que la expresión x === x de como resultado false? */
 
-// [🙋‍♂️]: Perfecto
 const x = NaN;
 
 console.log(x === x); // false
@@ -418,7 +417,6 @@ console.log(!isNaNValue2(x2) && x2 !== x2);
 ¿Podrías dar con alguna forma de que la expresión x + 1 === x - 1 arroje true? 
 */
 
-// [🙋‍♂️]: Perfecto
 const x3 = Infinity;
 
 console.log(x3 + 1 === x3 - 1); // true
